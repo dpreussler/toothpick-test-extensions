@@ -1,0 +1,36 @@
+buildscript {
+    ext.kotlin_version = System.getenv("KOTLIN_VERSION") ?: '1.2.0'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+group = 'com.github.sporttotal-tv'
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+
+    kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:1.1.1'
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile 'com.github.stephanenicolas.toothpick:toothpick-runtime:1.1.1'
+    compile 'com.github.stephanenicolas.toothpick:toothpick-testing:1.1.1'
+
+    testCompile 'org.mockito:mockito-all:1.9.5'
+    testCompile 'junit:junit:4.12'
+    testCompile "org.amshove.kluent:kluent:1.27"
+
+}
