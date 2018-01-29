@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = System.getenv("KOTLIN_VERSION") ?: '1.2.0'
+    ext.kotlin_version = System.getenv("KOTLIN_VERSION") ?: '1.2.10'
 
     repositories {
         mavenCentral()
@@ -9,26 +9,39 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
-
+apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-kapt'
 
 group = 'com.github.sporttotal-tv'
 
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 repositories {
     mavenCentral()
     jcenter()
 }
 
+configurations {
+    testKapt
+}
+
+compileTestJava {
+    options.annotationProcessorPath = configurations.testKapt
+    options.compilerArgs = ['-Atoothpick_registry_package_name=toothpick.testing',]
+}
+
 dependencies {
 
-    kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:1.1.1'
+    testKapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:1.1.1'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'com.github.stephanenicolas.toothpick:toothpick-runtime:1.1.1'
     compile 'com.github.stephanenicolas.toothpick:toothpick-testing:1.1.1'
 
+    testAnnotationProcessor 'com.github.stephanenicolas.toothpick:toothpick-compiler:1.1.1'
     testCompile 'org.mockito:mockito-all:1.9.5'
     testCompile 'junit:junit:4.12'
     testCompile "org.amshove.kluent:kluent:1.27"
