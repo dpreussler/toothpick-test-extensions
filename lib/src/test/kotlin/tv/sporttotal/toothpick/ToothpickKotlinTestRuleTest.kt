@@ -11,8 +11,7 @@ import tv.sporttotal.toothpick.data.ToBeInjected
 
 class ToothpickKotlinTestRuleTest {
 
-    @Rule
-    @JvmField val testRule = ToothpickKotlinTestRule(ToBeInjected::class.java)
+    @Rule @JvmField val testRule = ToothpickKotlinTestRule(ToBeInjected::class.java)
     private val viewModel = mock<ViewModel>().injectable(this)
 
     private val tested = ToBeInjected()

@@ -35,7 +35,7 @@ inline fun <reified T> T.injectable(instance: Any): T  {
     return this
 }
 
-inline fun <reified T> T.injectable(rule: ToothpickKotlinTestRule): T  = this.injectable(T::class.java, rule.module)
+inline fun <reified T> T.injectable(rule: ToothpickKotlinTestRule): T = injectable(T::class.java, rule.module)
 
 fun <T> T.injectable(clazz: Class<T>, module: Module): T {
     module.bind(clazz).toInstance(this)
