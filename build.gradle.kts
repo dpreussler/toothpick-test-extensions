@@ -7,8 +7,6 @@ buildscript {
     }
     dependencies {
         classpath( "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.10")
-        classpath( "com.github.dcendents:android-maven-gradle-plugin:2.0")
-
     }
 }
 
